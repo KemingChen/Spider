@@ -8,8 +8,10 @@ var Cmd = function(iConsole, iProcess){
     var scriptPath = [];
     var lastFile;
     
-    this.showMsg = function(msg){
-        myConsole.append(msg + br);
+    this.showMsg = function(msg, callback){
+        callback = callback === undefined ? undefined : callback.toString().match(/function (\w+)/)[1];
+        input = callback === undefined ? "" : ': <input type="text" onKeyDown="javascript: if(event.keyCode==13){$(this).attr(\'disabled\', \'true\');'+callback+'(this);}" />';
+        myConsole.append(msg + input + br);
     }
     
     this.clearMsg = function(){

@@ -9,6 +9,7 @@
     </head>
     <body>
         <div>
+            <button onclick="cmd.addScript('get.www.haodoo.net.js')">GetHaodoo</button>
             <button onclick="cmd.addScript('getBookInfo.js')">GetBookInfo</button>
             <button onclick="cmd.clearMsg()">ClearConsole</button>
         </div>
