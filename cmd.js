@@ -67,7 +67,7 @@ var Cmd = function(iConsole, iProcess){
             this.showMsg('Load {0} … [OK]'.format(path));
             scriptPath.push(path);
             $("body").append($("<script />", {
-                src: path
+                src: "get.spider.js/"+path
             }));
         }
         else

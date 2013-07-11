@@ -16,6 +16,10 @@ function initHaodooSpider(obj){
 }
 
 function getHaodooIDTotalPages(msg){
+    if(msg == ""){
+        cmd.showMsg("抓取 {0} 線上書失敗".format(haodooID));
+        return;
+    }
     totalPage = msg.match(/var maxChapterID = (\d+);/)[1];
     getHaodooIDContents();
 }
@@ -49,11 +53,14 @@ function getHaodooIDContents(msg, param){
 function saveContents(){
     var contents = "";
     for(var i=1; i<=totalPage; i++){
-        contents += haodooIDContents[i];
+        contents += haodooIDContents[i] + "\r\n\r\n";
     }
-    console.log(contents);
     var param = {action: "SaveText", data: contents, filename: haodooID};
-    cmd.downloadFile("database.php", param, undefined, undefined, "POST");
+    cmd.downloadFile("database.php", param, finish, undefined, "POST");
+}
+
+function finish(){
+    cmd.showMsg("抓取完成<a href='{0}' target='blank'>{0}</a>".format(haodooID));
 }
 
 main();
